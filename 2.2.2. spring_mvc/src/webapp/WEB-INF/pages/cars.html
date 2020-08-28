@@ -5,7 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-cars
-<p th:text="${message}"></p>
+
+<h1>List of Машин</h1>
+
+<h2 th:text="${title}"></h2>
+<table>
+    <tr th:each="listOfCars : ${listOfCars}">
+        <td th:text="${listOfCars.id}"></td>
+        <td th:text="${listOfCars.name}"></td>
+        <td th:text="${listOfCars.series}"></td>
+        <td th:text="${listOfCars.number}"></td>
+    </tr>
+</table>
+
 </body>
 </html>

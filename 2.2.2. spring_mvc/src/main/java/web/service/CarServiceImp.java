@@ -13,12 +13,12 @@ public class CarServiceImp implements CarService {
     @Autowired
     private CarDao carDao;
 
- //   @Transactional
+    @Transactional
     public void add(Car car){
         carDao.add(car);
     }
 
- //   @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Car> listThreeCars(){
      return carDao.listThreeCars();
     }

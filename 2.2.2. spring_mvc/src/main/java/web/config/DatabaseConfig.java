@@ -10,8 +10,9 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import web.model.Car;
 
 
@@ -49,7 +50,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
             props.put("hibernate.show_sql", this.env.getProperty("hibernate.show_sql"));
             props.put("hibernate.hbm2ddl.auto", this.env.getProperty("hibernate.hbm2ddl.auto"));
             factoryBean.setHibernateProperties(props);
-            factoryBean.setAnnotatedClasses(new Class[]{Car.class});
+            factoryBean.setAnnotatedClasses(Car.class);
             return factoryBean;
         }
 
