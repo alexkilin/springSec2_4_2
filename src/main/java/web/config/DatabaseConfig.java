@@ -13,15 +13,16 @@ import java.util.Properties;
 
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import web.model.Car;
+
 
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import web.model.User;
 
 
-    @Configuration
+@Configuration
     @PropertySource({"classpath:db.properties"})
     @EnableTransactionManagement
     @ComponentScan({"web"})
@@ -50,7 +51,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
             props.put("hibernate.show_sql", this.env.getProperty("hibernate.show_sql"));
             props.put("hibernate.hbm2ddl.auto", this.env.getProperty("hibernate.hbm2ddl.auto"));
             factoryBean.setHibernateProperties(props);
-            factoryBean.setAnnotatedClasses(Car.class);
+            factoryBean.setAnnotatedClasses(User.class);
             return factoryBean;
         }
 
