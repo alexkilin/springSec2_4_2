@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit page of CRUD App!!!</title>
+</head>
+<body>
+Update page!
+<a href="create">create</a> or <a href="delete">delete</a> or
+<a href="read">read</a> or <a href="update">update</a> or <a href="users">home</a>
+
+<form th:action="@{/update}" th:object="${user}" method="POST">
+    <!--<tr><p>Id: <input th:type="number" th:value="*{id}"></p></tr>-->
+    //            <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
+    //            <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>
+    //            <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
+    //            <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
+    //            <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
+</form>
+<a th:href="@{/}">Return</a>
+
+</body>
+</html>
+

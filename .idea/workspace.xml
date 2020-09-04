@@ -8,9 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="963f0150-18b8-43f2-a186-e2174b678ce9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-mvc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/config/AppInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/config/AppInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resourses/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resourses/db.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/web/controller/UsersController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/pages/users/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
@@ -136,8 +133,8 @@
         <option value="$PROJECT_DIR$/src/main/java/web/service/UserServiceImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/web/config/AppInit.java" />
         <option value="$PROJECT_DIR$/src/webapp/WEB-INF/pages/users/create.html" />
-        <option value="$PROJECT_DIR$/src/main/java/web/controller/UsersController.java" />
         <option value="$PROJECT_DIR$/src/webapp/WEB-INF/pages/users/home.html" />
+        <option value="$PROJECT_DIR$/src/main/java/web/controller/UsersController.java" />
       </list>
     </option>
   </component>
@@ -491,7 +488,7 @@
       <workItem from="1598625595891" duration="241000" />
       <workItem from="1599205651740" duration="5163000" />
       <workItem from="1599211016258" duration="7166000" />
-      <workItem from="1599219485264" duration="3606000" />
+      <workItem from="1599219485264" duration="4210000" />
     </task>
     <task id="LOCAL-00001" summary="task done">
       <created>1598625632963</created>
@@ -514,17 +511,23 @@
       <option name="project" value="LOCAL" />
       <updated>1599209469787</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2 ver 2.3.1. task">
+      <created>1599224955598</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1599224955598</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16860000" />
+    <option name="totallyTimeSpent" value="17464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20196672" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20196672" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -534,7 +537,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2607362" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2607362" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5582822" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -681,20 +684,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/web/controller/UsersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="10" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/webapp/WEB-INF/pages/users/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/web/controller/UsersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
