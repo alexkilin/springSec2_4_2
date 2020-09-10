@@ -6,8 +6,15 @@
 </head>
 <body>
 Create page!
-<a href="/users/create">create</a> or  <a href="/users/users">home</a>
+<a href="/users/users">home</a> or <a href="/users/read">List All</a>
+<form th:action="@{/users/createUser}" th:object="${user}" method="POST" >
 
+    <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
+    <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>
+    <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
+    <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
+    <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
 
+</form>
 </body>
 </html>

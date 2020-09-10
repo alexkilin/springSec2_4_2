@@ -6,19 +6,22 @@
 </head>
 <body>
 Update page!
-<a href="create">create</a> or <a href="delete">delete</a> or
-<a href="read">read</a> or <a href="update">update</a> or <a href="users">home</a>
+<a href="/users/create">Create</a> or
+<a href="/users/read">List all</a>  or <a href="/users/users">home</a>
 
-<form th:action="@{/update}" th:object="${user}" method="POST">
-    <!--<tr><p>Id: <input th:type="number" th:value="*{id}"></p></tr>-->
-    //            <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
-    //            <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>
-    //            <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
-    //            <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
-    //            <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
+<form th:action="@{/users/update}" th:object="${user}" method="POST" >
+               <tr><p>Id: <input th:type="number" th:field="*{id}"></p></tr>
+
+               <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
+               <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>
+                <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
+               <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
+                <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
+
+
+
+
 </form>
-<a th:href="@{/}">Return</a>
-
 </body>
 </html>
 

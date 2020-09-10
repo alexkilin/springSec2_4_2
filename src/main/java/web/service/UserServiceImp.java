@@ -5,20 +5,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.model.User;
-
 import java.util.List;
+
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
     @Autowired
     private UserDao userDao;
 
-
+    @Transactional
     public void add(User user) {
         userDao.add(user);
     }
 
-
+    @Transactional
     public void deleteUser(User user) {
         userDao.deleteUser(user);
     }
@@ -28,16 +28,15 @@ public class UserServiceImp implements UserService {
         return userDao.listUsers();
     }
 
-
+    @Transactional
     public void update(User user) {
         userDao.update(user);
     }
 
-
+    @Transactional
     public User readUserById(Long id) {
         return userDao.readUserById(id);
     }
-
 }
 
 

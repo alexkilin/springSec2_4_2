@@ -8,7 +8,7 @@ import web.model.User;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
-@Repository
+//@Repository
 public class UserDaoImp implements UserDao{
     @Autowired
     public SessionFactory sessionFactory;

@@ -7,7 +7,7 @@
 <body>
 Hello page!
 <a href="/users/create">create</a> or
-<a href="/users/users">home</a>
+<a href="/users/users">Home</a>
 <table>
     <tr>
         <th>id</th>
@@ -24,9 +24,9 @@ Hello page!
         <td th:text="${user.age}"></td>
         <td th:text="${user.email}"></td>
         <td>
-            <a href="/users/update/${user.id}">update</a>
-            <a href="delete/${user.id}">delete</a>
-            <a href="read/${user.id}">read</a>
+            <a th:href="'/users/update/'+${user.id}" th:text="update">update</a>
+            <a th:href="'/users/delete/'+${user.id}" th:text="delete">delete</a>
+            <a href="/users/read">List All</a>
         </td>
     </tr>
 </table>
