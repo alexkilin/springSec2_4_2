@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello! This is Hello page of CRUD App!!!</title>
+    <style>
+        table {
+            width: 100%; /* Ширина таблицы */
+            background: white; /* Цвет фона таблицы */
+            color: white; /* Цвет текста */
+            border-spacing: 1px; /* Расстояние между ячейками */
+        }
+        td, th {
+            background: maroon; /* Цвет фона ячеек */
+            padding: 5px; /* Поля вокруг текста */
+        }
+    </style>
 </head>
 <body>
 Hello page!
-<a href="/users/create">create</a> or
-<a href="/users/users">Home</a>
+<a href="/users/create">Create</a> or
+<a href="/users/users">List All</a>
 <table>
     <tr>
         <th>id</th>
@@ -24,9 +36,14 @@ Hello page!
         <td th:text="${user.age}"></td>
         <td th:text="${user.email}"></td>
         <td>
-            <a th:href="'/users/update/'+${user.id}" th:text="update">update</a>
-            <a th:href="'/users/delete/'+${user.id}" th:text="delete">delete</a>
-            <a href="/users/read">List All</a>
+            <table>
+                <tbody><tr>
+                    <td><a th:href="'/users/update/'+${user.id}" th:text="update" style="background-color:green;" >Update</a></td>
+                    <td><a th:href="'/users/delete/'+${user.id}" th:text="delete" >Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+
         </td>
     </tr>
 </table>

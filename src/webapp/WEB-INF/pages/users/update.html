@@ -9,8 +9,8 @@ Update page!
 <a href="/users/create">Create</a> or
 <a href="/users/read">List all</a>  or <a href="/users/users">home</a>
 
-<form th:action="@{/users/update}" th:object="${user}" method="POST" >
-               <tr><p>Id: <input th:type="number" th:field="*{id}"></p></tr>
+<form th:inline="text" th:action="@{/users/update}" th:object="${user}" method="POST" >
+               <tr><p>Id: [[${user.id}]]<input th:type="hidden" th:field="*{id}"></p></tr>
 
                <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
                <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>

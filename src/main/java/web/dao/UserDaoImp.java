@@ -3,18 +3,21 @@ package web.dao;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
-//@Repository
+//@Component
 public class UserDaoImp implements UserDao{
     @Autowired
+    @Qualifier("getSessionFactory")
     public SessionFactory sessionFactory;
 
 
-    public void add (User user) {
+    public void addUser(User user) {
         sessionFactory.getCurrentSession().save(user);
     }
 
@@ -25,13 +28,13 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public List<User> listUsers() {
+    public List<User> getAllUsers() {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
 
     @Override
-    public void update (User user) {
+    public void updateUser(User user) {
         sessionFactory.getCurrentSession().update(user);
     }
 
