@@ -6,10 +6,10 @@
 </head>
 <body>
 Update page!
-<a href="/users/create">Create</a> or
-<a href="/users/read">List all</a>  or <a href="/users/users">home</a>
+<a href="/admin/create">Create</a> or
+<a href="/admin/users">List all</a>  or <a href="/logout">Logout</a>
 
-<form th:inline="text" th:action="@{/users/update}" th:object="${user}" method="POST" >
+<form th:inline="text" th:action="@{/admin/update}" th:object="${user}" method="POST" >
                <tr><p>Id: [[${user.id}]]<input th:type="hidden" th:field="*{id}"></p></tr>
 
                <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>

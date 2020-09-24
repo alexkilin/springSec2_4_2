@@ -44,4 +44,15 @@ public class UserDaoImp implements UserDao{
         result = sessionFactory.openSession().get(User.class,id);
         return result;
     }
+
+    @Override
+    public User getUserByUserName(String username) {
+//        if (!userMap.containsKey(name)) {
+//            return null;
+//        }
+//
+//        return userMap.get(name);
+        return null;
+    }
+
 }

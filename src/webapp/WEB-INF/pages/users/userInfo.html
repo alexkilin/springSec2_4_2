@@ -17,23 +17,19 @@
     </style>
 </head>
 <body>
-Hello page!
-<a href="/admin/create">Create</a> or
-<a href="/admin/users">List All</a> or
-<a href="/user">Infopage</a> or
-<a href="/logout">Logout</a> or
+Info page!
+<a href="/logout">Logout</a>
 <table>
     <tr>
-        <th>ID</th>
-        <th>FIRSTNAME</th>
-        <th>LASTNAME</th>
-        <th>AGE</th>
-        <th>E-MAIL</th>
-        <th>USERNAME</th>
-        <th>PASSWORD</th>
-        <th>ACTION</th>
+        <th>id</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>age</th>
+        <th>email</th>
+        <th>username</th>
+        <th>password</th>
     </tr>
-    <tr th:each="user : ${listOfUsers}">
+    <tr>
         <td th:text="${user.id}"></td>
         <td th:text="${user.firstName}"></td>
         <td th:text="${user.lastName}"></td>
@@ -41,20 +37,6 @@ Hello page!
         <td th:text="${user.email}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.password}"></td>
-        <td>
-            <table>
-                <tbody><tr>
-                    <td><a th:href="'/admin/update/'+${user.id}" th:text="Update" >Update</a></td>
-                    <td><a th:href="'/admin/delete/'+${user.id}" th:text="Delete" >Delete</a></td>
-                    <td><a th:href="'/admin/user/'+${user.id}" th:text="InfoPage" >Info</a></td>
-                </tr>
-                </tbody>
-            </table>
-
-        </td>
     </tr>
 </table>
-
-
 </body>
-
