@@ -11,15 +11,26 @@ Update page!
 
 <form th:inline="text" th:action="@{/admin/update}" th:object="${user}" method="POST" >
                <tr><p>Id: [[${user.id}]]<input th:type="hidden" th:field="*{id}"></p></tr>
-
                <tr><p>First_Name: <input th:type="text" th:field="*{firstName}"></p></tr>
                <tr><p>Last_Name: <input th:type="text" th:field="*{lastName}"></p></tr>
                 <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
-               <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
+                <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
+                <tr><p>Username: <input th:type="text" th:field="*{username}"></p></tr>
+                <tr><p>Password: <input th:type="text" th:field="*{password}"></p></tr>
+
+    <tr>
+        <select th:field="*{isAdminRole_DTO}">
+            <option th:value=true th:utext="Enable">E</option>
+            <option th:value=false th:utext="Disable">D</option>
+        </select>
+    </tr>
+    <tr>
+        <select th:field="*{isUserRole_DTO}">
+            <option th:value=true th:utext="Enable">E</option>
+            <option th:value=false th:utext="Disable">D</option>
+        </select>
+    </tr>
                 <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
-
-
-
 
 </form>
 </body>

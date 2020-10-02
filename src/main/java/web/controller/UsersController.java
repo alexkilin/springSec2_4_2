@@ -5,10 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import web.model.Role;
 import web.model.User;
 import web.service.UserService;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,19 +39,43 @@ public class UsersController {
 
     @GetMapping(value = "/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
-        service.deleteUser(service.getUserById(id));
+        service.deleteUserById(id);
         return "redirect:/admin/users";
     }
 
-    @GetMapping(value = "/update/{id}")
-    public String editUser(@PathVariable("id") Long id, Model model) {
-        User user = service.getUserById(id);
+//    @GetMapping(value = "/update/{id}")
+//    public String editUser(@PathVariable("id") Long id, Model model) {
+//        User user = service.getUserById(id);
+//        model.addAttribute("user", user);
+//        return "users/update";
+//    }
+
+    @GetMapping(value = "/updateuser")
+    public String editUser(@RequestParam(value = "id", required = false) Long id,
+                           @RequestParam(value = "firstName", required = false) String firstName,
+                           @RequestParam(value = "lastName", required = false) String lastName,
+                           @RequestParam(value = "age", required = false) int age,
+                           @RequestParam(value = "e-mail", required = false) String email,
+                           @RequestParam(value = "username", required = false) String username,
+                           @RequestParam(value = "password", required = false) String password,
+                           @RequestParam(value = "roles", required = false) Set<Role> roles, Model model) {
+
+        User user = new User(id, firstName, lastName, age, email, username, password, roles);
         model.addAttribute("user", user);
+
         return "users/update";
     }
 
+
     @PostMapping(value = "/update")
     public String updateUser(@ModelAttribute User user) {
+        long n = 1;
+        if (user.isAdminRole_DTO()) {
+            user.getRoles().add(new Role(n,"ROLE_ADMIN"));
+        }
+        if (user.isUserRole_DTO()) {
+            user.getRoles().add(new Role((n)+1L,"ROLE_USER"));
+        }
         service.updateUser(user);
         return "redirect:/admin/users";
     }

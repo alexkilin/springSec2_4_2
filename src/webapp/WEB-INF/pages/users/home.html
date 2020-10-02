@@ -21,7 +21,7 @@ Hello page!
 <a href="/admin/create">Create</a> or
 <a href="/admin/users">List All</a> or
 <a href="/user">Infopage</a> or
-<a href="/logout">Logout</a> or
+<a href="/logout">Logout</a>
 <table>
     <tr>
         <th>ID</th>
@@ -44,7 +44,10 @@ Hello page!
         <td>
             <table>
                 <tbody><tr>
-                    <td><a th:href="'/admin/update/'+${user.id}" th:text="Update" >Update</a></td>
+                    <td><a th:href="'/admin/updateuser?firstname=' + ${user.firstName} + '&lastname=' +
+                    ${user.lastName} + '&username=' + ${user.username} + '&password=' +
+                    ${user.password} + '&email=' +${user.email} + '&id=' + ${user.id} + '&age=' + ${user.age}"
+                           th:text="Update" >Update</a></td>
                     <td><a th:href="'/admin/delete/'+${user.id}" th:text="Delete" >Delete</a></td>
                     <td><a th:href="'/admin/user/'+${user.id}" th:text="InfoPage" >Info</a></td>
                 </tr>

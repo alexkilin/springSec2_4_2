@@ -46,14 +46,17 @@ public class UserServiceImp implements UserService {
         userDao.updateUser(user);
     }
 
-    @Transactional
     public User getUserById(Long id) {
         return userDao.readUserById(id);
     }
 
-    @Transactional
     public User getUserByUserName(String userName) {
         return userDao.getUserByUserName(userName);
+    }
+
+    @Transactional
+    public void deleteUserById(Long id) {
+        userDao.deleteUserById(id);
     }
 }
 

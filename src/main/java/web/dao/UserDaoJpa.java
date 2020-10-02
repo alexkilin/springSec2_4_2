@@ -47,5 +47,9 @@ private EntityManager entityManager;
         return q.getResultList().stream().findAny().orElse(null);
     }
 
-
+    @Override
+    public void deleteUserById(Long id) {
+        User currentUser = readUserById(id);
+        entityManager.remove(currentUser);
+    }
 }

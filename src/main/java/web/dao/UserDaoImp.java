@@ -55,4 +55,7 @@ public class UserDaoImp implements UserDao{
         return null;
     }
 
+    @Override
+    public void deleteUserById(Long id) {
+    }
 }

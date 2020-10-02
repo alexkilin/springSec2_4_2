@@ -17,7 +17,7 @@ public class User implements UserDetails {
     @Column(name = "firstName")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     private String lastName;
 
     @Column(name = "age")
@@ -34,6 +34,10 @@ public class User implements UserDetails {
 
     @Transient
     transient private String passwordConfirm;
+    @Transient
+    private boolean isAdminRole_DTO;
+    @Transient
+    private boolean isUserRole_DTO;
 
     @ManyToMany
     @JoinTable (name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -43,18 +47,27 @@ public class User implements UserDetails {
 
     public User() {}
 
-    public User(String firstName, String lastName, String email, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
-    }
     public User(Long id, String username, String password, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.roles = roles;
     }
+
+    public User(Long id, String firstName, String lastName, int age, String email, String username, String password,
+                Set<Role> roles) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.isAdminRole_DTO = false;
+        this.isUserRole_DTO = false;
+    }
+
     public Long getId() {
         return id;
     }
@@ -144,5 +157,21 @@ public class User implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public boolean isAdminRole_DTO() {
+        return isAdminRole_DTO;
+    }
+
+    public boolean isUserRole_DTO() {
+        return isUserRole_DTO;
+    }
+
+    public void setAdminRole_DTO(boolean adminRole_DTO) {
+        isAdminRole_DTO = adminRole_DTO;
+    }
+
+    public void setUserRole_DTO(boolean userRole_DTO) {
+        isUserRole_DTO = userRole_DTO;
     }
 }

@@ -1,0 +1,36 @@
+задача:
+1-страница входа - /login?
+2-какие есть хендлеры и заем нужны?
+3-зачем метод  and()?
+4-почему не указан секьюрити в конфиги?
+5- разбить нормально контроллеры?
+6-через что лучше внедрять бин?
+7-НЕЙМИНГ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+8-гет запросы отдают страницы?
+9-как можем передовать параметры?
+10-удаление по id?
+11-заполнять при обновление и удаление данными с фронта?
+12-удалить лишьние контроллеры?
+13-добавлять и обновлять роли у юзера?
+14-на строницу логин у тех кто не вошел есть доступ?
+
+    <tr>
+                         <select th:field="*{roles}">
+                             <option th:value="ADMIN" th:utext="ADMIN">ADMIN</option>
+                             <option th:value="USER" th:utext="USER">USER</option>
+                         </select>
+
+             </tr>
+
+           <select class="form-control" th:field="*{id}" name="role">
+                      <option value=""> --- </option>
+                      <option th:each="roles : ${getRole}"
+                              th:value="${roles.id}"
+                              th:text="${roles.role}"
+                              th:selected="${user.setRoles(roles)}"
+                      /></option>
+                  </select>
+
+
+
+      <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>

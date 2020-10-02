@@ -18,8 +18,6 @@ import web.config.handler.LoginSuccessHandler;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    ///////
-
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -27,8 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder()); // конфигурация для прохождения аутентификации
     }
 
-
-    //////
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -69,11 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-               // .antMatchers("/users/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/users/user").hasAnyRole("USER","ADMIN")
+                .antMatchers("/user").hasAnyRole("USER","ADMIN")
                 .antMatchers("/**").permitAll()
-                .and().formLogin();
+                .and();
 
 //
 //                // делаем страницу регистрации недоступной для авторизированных пользователей
