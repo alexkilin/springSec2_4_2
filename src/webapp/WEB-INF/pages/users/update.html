@@ -18,18 +18,7 @@ Update page!
                 <tr><p>Username: <input th:type="text" th:field="*{username}"></p></tr>
                 <tr><p>Password: <input th:type="text" th:field="*{password}"></p></tr>
 
-    <tr>
-        <select th:field="*{isAdminRole_DTO}">
-            <option th:value=true th:utext="Enable">E</option>
-            <option th:value=false th:utext="Disable">D</option>
-        </select>
-    </tr>
-    <tr>
-        <select th:field="*{isUserRole_DTO}">
-            <option th:value=true th:utext="Enable">E</option>
-            <option th:value=false th:utext="Disable">D</option>
-        </select>
-    </tr>
+
                 <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
 
 </form>

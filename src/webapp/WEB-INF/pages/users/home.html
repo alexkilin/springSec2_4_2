@@ -31,6 +31,7 @@ Hello page!
         <th>E-MAIL</th>
         <th>USERNAME</th>
         <th>PASSWORD</th>
+        <th>ROLES</th>
         <th>ACTION</th>
     </tr>
     <tr th:each="user : ${listOfUsers}">
@@ -41,19 +42,33 @@ Hello page!
         <td th:text="${user.email}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.password}"></td>
+
+
+                <td>
+                    <table>
+                        <tbody>
+                        <tr th:each="role : ${rolesDTO[user.id]}">
+                            <td th:text="${role}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+
         <td>
             <table>
-                <tbody><tr>
+                <tbody>
+                <tr>
                     <td><a th:href="'/admin/updateuser?firstname=' + ${user.firstName} + '&lastname=' +
                     ${user.lastName} + '&username=' + ${user.username} + '&password=' +
-                    ${user.password} + '&email=' +${user.email} + '&id=' + ${user.id} + '&age=' + ${user.age}"
+                    ${user.password} + '&email=' +${user.email} + '&id=' + ${user.id} + '&age=' + ${user.age} +
+                    '&rolesDTO=' + 'ROLE_USER' + '&rolesDTO=' + 'ROLE_ADMIN'"
                            th:text="Update" >Update</a></td>
                     <td><a th:href="'/admin/delete/'+${user.id}" th:text="Delete" >Delete</a></td>
                     <td><a th:href="'/admin/user/'+${user.id}" th:text="InfoPage" >Info</a></td>
                 </tr>
                 </tbody>
             </table>
-
         </td>
     </tr>
 </table>

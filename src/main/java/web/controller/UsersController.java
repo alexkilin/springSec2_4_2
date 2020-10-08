@@ -18,9 +18,25 @@ public class UsersController {
     public UserService service;
 
     @GetMapping(value = "/users")
-    public String listAll(Model model) {
+    public String getAll(Model model) {
         List<User> users = service.getAllUsers();
         model.addAttribute("listOfUsers", users);
+
+        Map<Long, String[]> rolesDTO = new HashMap<>();
+        for (User user : users
+        ) {
+            int countOfRoles = user.getRoles().size();
+            String[] roles = new String[countOfRoles];
+            int i = 0;
+            for (Role role : (user.getRoles())
+            ) {
+                roles[i] = role.getRole();
+                System.out.println(user.getId() + " " + roles[i]);
+                i++;
+            }
+            rolesDTO.put(user.getId(), roles);
+        }
+        model.addAttribute("rolesDTO", rolesDTO);
         return "/users/home";
     }
 
@@ -58,9 +74,14 @@ public class UsersController {
                            @RequestParam(value = "e-mail", required = false) String email,
                            @RequestParam(value = "username", required = false) String username,
                            @RequestParam(value = "password", required = false) String password,
-                           @RequestParam(value = "roles", required = false) Set<Role> roles, Model model) {
+                           @RequestParam(value = "rolesDTO", required = false) String[] roles, Model model) {
 
-        User user = new User(id, firstName, lastName, age, email, username, password, roles);
+        Set<Role> rolesSet = new HashSet<>();
+        for (int i = 0; i <roles.length ; i++) {
+            rolesSet.add(new Role((long)i, roles[i]));
+        }
+
+        User user = new User(id, firstName, lastName, age, email, username, password, rolesSet);
         model.addAttribute("user", user);
 
         return "users/update";
@@ -69,13 +90,6 @@ public class UsersController {
 
     @PostMapping(value = "/update")
     public String updateUser(@ModelAttribute User user) {
-        long n = 1;
-        if (user.isAdminRole_DTO()) {
-            user.getRoles().add(new Role(n,"ROLE_ADMIN"));
-        }
-        if (user.isUserRole_DTO()) {
-            user.getRoles().add(new Role((n)+1L,"ROLE_USER"));
-        }
         service.updateUser(user);
         return "redirect:/admin/users";
     }

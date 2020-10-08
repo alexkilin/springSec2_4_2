@@ -34,3 +34,20 @@
 
 
       <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
+
+
+      <td th:each="userRoles: ${user.roles}">
+           <td th:text="${userRoles.role}"></td>
+      </td>
+
+      <tr th:each="userRoles: ${rolesDTO[${user.id}]}">
+                       <td th:text="${userRoles.role}"></td>
+                  </tr>
+
+                 <table>
+                 <tbody>
+                                     <tr th:each="userRoles: ${rolesDTO[${user.id}]}">
+                                        <td th:text="${userRoles.role}"></td>
+                                     </tr>
+                 </tbody>
+                 </table>

@@ -34,12 +34,9 @@ public class User implements UserDetails {
 
     @Transient
     transient private String passwordConfirm;
-    @Transient
-    private boolean isAdminRole_DTO;
-    @Transient
-    private boolean isUserRole_DTO;
 
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -64,8 +61,7 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.roles = roles;
-        this.isAdminRole_DTO = false;
-        this.isUserRole_DTO = false;
+
     }
 
     public Long getId() {
@@ -159,19 +155,5 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public boolean isAdminRole_DTO() {
-        return isAdminRole_DTO;
-    }
 
-    public boolean isUserRole_DTO() {
-        return isUserRole_DTO;
-    }
-
-    public void setAdminRole_DTO(boolean adminRole_DTO) {
-        isAdminRole_DTO = adminRole_DTO;
-    }
-
-    public void setUserRole_DTO(boolean userRole_DTO) {
-        isUserRole_DTO = userRole_DTO;
-    }
 }

@@ -36,7 +36,7 @@ public class UserServiceImp implements UserService {
     public void deleteUser(User user) {
         userDao.deleteUser(user);
     }
-
+    @Transactional
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }

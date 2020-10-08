@@ -15,6 +15,12 @@ Create page!
     <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
     <tr><p>Username <input th:type="text" th:field="*{username}"></p></tr>
     <tr><p>Password: <input th:type="text" th:field="*{password}"></p></tr>
+
+    <select th:field="*{roles}">
+        <option th:value="ROLE_ADMIN" th:utext="ADMIN">ADMIN</option>
+        <option th:value="ROLE_USER" th:utext="USER">USER</option>
+    </select>
+
     <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>
 
 </form>
