@@ -13,9 +13,30 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/admin")
-public class UsersController {
+public class AdminController {
     @Autowired
     public UserService service;
+
+    public void setNewRoles (User user, String role){
+        Set<Role> roles = new HashSet<>();
+        switch (role) {
+            case "ROLE_USER": {
+                roles.add(new Role(2L, role));
+                break;
+            }
+
+            case "ROLE_ADMIN": {
+                roles.add(new Role(1L, role));
+                break;
+            }
+            case "ROLE_USER_ADMIN": {
+                roles.add(new Role(1L, "ROLE_ADMIN"));
+                roles.add(new Role(2L, "ROLE_USER"));
+                break;
+            }
+        }
+        user.setRoles(roles);
+    }
 
     @GetMapping(value = "/users")
     public String getAll(Model model) {
@@ -48,7 +69,8 @@ public class UsersController {
     }
 
     @PostMapping(value = "/createUser")
-    public String createUser(@ModelAttribute User user) {
+    public String createUser(User user, String role) {
+        setNewRoles(user, role);
         service.addUser(user);
         return "redirect:/admin/users";
     }
@@ -60,21 +82,21 @@ public class UsersController {
     }
 
 //    @GetMapping(value = "/update/{id}")
-//    public String editUser(@PathVariable("id") Long id, Model model) {
+//    public String updateUser(@PathVariable("id") Long id, Model model) {
 //        User user = service.getUserById(id);
 //        model.addAttribute("user", user);
 //        return "users/update";
 //    }
 
     @GetMapping(value = "/updateuser")
-    public String editUser(@RequestParam(value = "id", required = false) Long id,
-                           @RequestParam(value = "firstName", required = false) String firstName,
-                           @RequestParam(value = "lastName", required = false) String lastName,
-                           @RequestParam(value = "age", required = false) int age,
-                           @RequestParam(value = "e-mail", required = false) String email,
-                           @RequestParam(value = "username", required = false) String username,
-                           @RequestParam(value = "password", required = false) String password,
-                           @RequestParam(value = "rolesDTO", required = false) String[] roles, Model model) {
+    public String updateUser(@RequestParam(value = "id", required = false) Long id,
+                             @RequestParam(value = "firstName", required = false) String firstName,
+                             @RequestParam(value = "lastName", required = false) String lastName,
+                             @RequestParam(value = "age", required = false) int age,
+                             @RequestParam(value = "email", required = false) String email,
+                             @RequestParam(value = "username", required = false) String username,
+                             @RequestParam(value = "password", required = false) String password,
+                             @RequestParam(value = "rolesDTO", required = false) String[] roles, Model model) {
 
         Set<Role> rolesSet = new HashSet<>();
         for (int i = 0; i <roles.length ; i++) {
@@ -87,22 +109,13 @@ public class UsersController {
         return "users/update";
     }
 
-
     @PostMapping(value = "/update")
-    public String updateUser(@ModelAttribute User user) {
+    public String updateUser(@ModelAttribute User user, String roleDTO) {
+        setNewRoles(user, roleDTO);
         service.updateUser(user);
         return "redirect:/admin/users";
     }
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC-SECURITY application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "/users/hello";
-    }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginPage() {

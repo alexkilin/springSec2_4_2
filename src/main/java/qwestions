@@ -4,50 +4,22 @@
 3-зачем метод  and()?
 4-почему не указан секьюрити в конфиги?
 5- разбить нормально контроллеры?
+done
+
 6-через что лучше внедрять бин?
 7-НЕЙМИНГ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+done
 8-гет запросы отдают страницы?
+done
 9-как можем передовать параметры?
+done: RequestParam, @ModelAttribute
 10-удаление по id?
+done
 11-заполнять при обновление и удаление данными с фронта?
+done
 12-удалить лишьние контроллеры?
+
 13-добавлять и обновлять роли у юзера?
+done
 14-на строницу логин у тех кто не вошел есть доступ?
 
-    <tr>
-                         <select th:field="*{roles}">
-                             <option th:value="ADMIN" th:utext="ADMIN">ADMIN</option>
-                             <option th:value="USER" th:utext="USER">USER</option>
-                         </select>
-
-             </tr>
-
-           <select class="form-control" th:field="*{id}" name="role">
-                      <option value=""> --- </option>
-                      <option th:each="roles : ${getRole}"
-                              th:value="${roles.id}"
-                              th:text="${roles.role}"
-                              th:selected="${user.setRoles(roles)}"
-                      /></option>
-                  </select>
-
-
-
-      <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
-
-
-      <td th:each="userRoles: ${user.roles}">
-           <td th:text="${userRoles.role}"></td>
-      </td>
-
-      <tr th:each="userRoles: ${rolesDTO[${user.id}]}">
-                       <td th:text="${userRoles.role}"></td>
-                  </tr>
-
-                 <table>
-                 <tbody>
-                                     <tr th:each="userRoles: ${rolesDTO[${user.id}]}">
-                                        <td th:text="${userRoles.role}"></td>
-                                     </tr>
-                 </tbody>
-                 </table>
