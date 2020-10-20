@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello! This is Hello page of CRUD App!!!</title>
-    <style>
-        table {
-            width: 100%; /* Ширина таблицы */
-            background: white; /* Цвет фона таблицы */
-            color: white; /* Цвет текста */
-            border-spacing: 1px; /* Расстояние между ячейками */
-        }
-        td, th {
-            background: maroon; /* Цвет фона ячеек */
-            padding: 5px; /* Поля вокруг текста */
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/style.css" type="text/css"/>
 </head>
 <body>
 Hello page!
@@ -47,8 +36,8 @@ Hello page!
                 <td>
                     <table>
                         <tbody>
-                        <tr th:each="role : ${rolesDTO[user.id]}">
-                            <td th:text="${role}"></td>
+                        <tr th:each="role : ${user.roles}">
+                            <td th:text="${role.role}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -59,13 +48,9 @@ Hello page!
             <table>
                 <tbody>
                 <tr>
-                    <td><a th:href="'/admin/updateuser?firstName=' + ${user.firstName} + '&lastName=' +
-                    ${user.lastName} + '&username=' + ${user.username} + '&password=' +
-                    ${user.password} + '&email=' +${user.email} + '&id=' + ${user.id} + '&age=' + ${user.age} +
-                    '&rolesDTO=' + 'ROLE_USER' + '&rolesDTO=' + 'ROLE_ADMIN'"
+                    <td><a th:href="'/admin/updateuser?id=' + ${user.id}"
                            th:text="Update" >Update</a></td>
                     <td><a th:href="'/admin/delete/'+${user.id}" th:text="Delete" >Delete</a></td>
-                    <td><a th:href="'/admin/user/'+${user.id}" th:text="InfoPage" >Info</a></td>
                 </tr>
                 </tbody>
             </table>

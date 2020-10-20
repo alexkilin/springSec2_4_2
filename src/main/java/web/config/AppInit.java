@@ -1,9 +1,11 @@
 package web.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
 // конфигурирование с помощью JAVA
 // наследование от специального класса
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+
 
     // Метод, указывающий на класс конфигурации
     @Override
@@ -28,5 +30,6 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
 
 }

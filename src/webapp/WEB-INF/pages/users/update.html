@@ -16,12 +16,13 @@ Update page!
                 <tr><p>Age: <input th:type="number" th:field="*{age}"></p></tr>
                 <tr><p>Email: <input th:type="text" th:field="*{email}"></p></tr>
                 <tr><p>Username: <input th:type="text" th:field="*{username}"></p></tr>
-                <tr><p>Password: <input th:type="text" th:field="*{password}"></p></tr>
+
+                <tr><p>Password: <input th:type="text" name="newPassword"></p></tr>
     <tr>
         <select type="text" name="roleDTO">
             <option value="ROLE_ADMIN" >ADMIN</option>
             <option value="ROLE_USER" >USER</option>
-            <option value="ROLE_USER_ADMIN" >USER</option>
+            <option value="ROLE_USER_ADMIN" >USER&ADMIN</option>
         </select>
     </tr>
     <tr><p>Action: <input th:type="submit" th:value="Submit"></p></tr>

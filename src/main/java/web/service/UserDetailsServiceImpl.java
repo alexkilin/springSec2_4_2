@@ -1,5 +1,4 @@
 package web.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,27 +11,23 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
 import web.model.Role;
 import web.model.User;
-
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    @Autowired
-    @Qualifier("userDaoJpa")
+
     private final UserDao userDao;
 
-    public UserDetailsServiceImpl(UserDao userDao) {
+    @Autowired
+    public UserDetailsServiceImpl(@Qualifier("userDaoJpa")UserDao userDao) {
         this.userDao = userDao;
     }
 
-    // «Пользователь» – это просто Object. В большинстве случаев он может быть
-    //  приведен к классу UserDetails.
-    // Для создания UserDetails используется интерфейс UserDetailsService, с единственным методом:
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User myUser = userDao.getUserByUserName(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User myUser = userDao.getUserByUserName(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 

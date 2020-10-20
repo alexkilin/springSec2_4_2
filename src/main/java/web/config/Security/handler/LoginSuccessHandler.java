@@ -1,10 +1,8 @@
-package web.config.handler;
-
+package web.config.Security.handler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,13 +19,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ROLE_ADMIN")) {
             httpServletResponse.sendRedirect("/admin/users");
-        } else
-        if (roles.contains("ROLE_USER")) {
+        } else if (roles.contains("ROLE_USER")) {
             httpServletResponse.sendRedirect("/user");
-        } else
-            {
-            httpServletResponse.sendRedirect("/admin/login?logout");
+        } else {
+            httpServletResponse.sendRedirect("/admin/login");
         }
-        //  httpServletResponse.sendRedirect("/users/hello");
     }
 }

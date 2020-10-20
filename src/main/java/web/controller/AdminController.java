@@ -1,30 +1,39 @@
 package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.Role;
 import web.model.User;
 import web.service.UserService;
-
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    public UserService service;
 
-    public void setNewRoles (User user, String role){
+    public final UserService service;
+
+    public final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public AdminController(UserService service, PasswordEncoder passwordEncoder) {
+        this.service = service;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
+    private void setNewRoles (User user, String role){
         Set<Role> roles = new HashSet<>();
         switch (role) {
             case "ROLE_USER": {
                 roles.add(new Role(2L, role));
                 break;
             }
-
             case "ROLE_ADMIN": {
                 roles.add(new Role(1L, role));
                 break;
@@ -42,22 +51,6 @@ public class AdminController {
     public String getAll(Model model) {
         List<User> users = service.getAllUsers();
         model.addAttribute("listOfUsers", users);
-
-        Map<Long, String[]> rolesDTO = new HashMap<>();
-        for (User user : users
-        ) {
-            int countOfRoles = user.getRoles().size();
-            String[] roles = new String[countOfRoles];
-            int i = 0;
-            for (Role role : (user.getRoles())
-            ) {
-                roles[i] = role.getRole();
-                System.out.println(user.getId() + " " + roles[i]);
-                i++;
-            }
-            rolesDTO.put(user.getId(), roles);
-        }
-        model.addAttribute("rolesDTO", rolesDTO);
         return "/users/home";
     }
 
@@ -71,6 +64,7 @@ public class AdminController {
     @PostMapping(value = "/createUser")
     public String createUser(User user, String role) {
         setNewRoles(user, role);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         service.addUser(user);
         return "redirect:/admin/users";
     }
@@ -81,37 +75,22 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-//    @GetMapping(value = "/update/{id}")
-//    public String updateUser(@PathVariable("id") Long id, Model model) {
-//        User user = service.getUserById(id);
-//        model.addAttribute("user", user);
-//        return "users/update";
-//    }
 
     @GetMapping(value = "/updateuser")
-    public String updateUser(@RequestParam(value = "id", required = false) Long id,
-                             @RequestParam(value = "firstName", required = false) String firstName,
-                             @RequestParam(value = "lastName", required = false) String lastName,
-                             @RequestParam(value = "age", required = false) int age,
-                             @RequestParam(value = "email", required = false) String email,
-                             @RequestParam(value = "username", required = false) String username,
-                             @RequestParam(value = "password", required = false) String password,
-                             @RequestParam(value = "rolesDTO", required = false) String[] roles, Model model) {
-
-        Set<Role> rolesSet = new HashSet<>();
-        for (int i = 0; i <roles.length ; i++) {
-            rolesSet.add(new Role((long)i, roles[i]));
-        }
-
-        User user = new User(id, firstName, lastName, age, email, username, password, rolesSet);
+    public String updateUser(@RequestParam(value = "id", required = false) Long id, Model model) {
+        User user = service.getUserById(id);
         model.addAttribute("user", user);
-
         return "users/update";
     }
 
     @PostMapping(value = "/update")
-    public String updateUser(@ModelAttribute User user, String roleDTO) {
+    public String updateUser(@ModelAttribute User user, String roleDTO, String newPassword) {
         setNewRoles(user, roleDTO);
+        if (newPassword != "") {
+           user.setPassword(passwordEncoder.encode(newPassword));
+        } else {
+            user.setPassword(service.getUserById(user.getId()).getPassword());
+        }
         service.updateUser(user);
         return "redirect:/admin/users";
     }

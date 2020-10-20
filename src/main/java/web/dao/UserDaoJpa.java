@@ -37,14 +37,14 @@ private EntityManager entityManager;
     public User readUserById(Long id) {
         TypedQuery<User> q = entityManager.createQuery("select u from User u where u.id = :id", User.class);
         q.setParameter("id", id);
-        return q.getResultList().stream().findAny().orElse(null);
+        return q.getSingleResult();
     }
 
     @Override
     public User getUserByUserName(String username) {
         TypedQuery<User> q = entityManager.createQuery("select u from User u where u.username = :name", User.class);
         q.setParameter("name", username);
-        return q.getResultList().stream().findAny().orElse(null);
+        return q.getSingleResult();
     }
 
     @Override
